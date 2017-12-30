@@ -14,9 +14,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <h1>{this.state.txt}</h1>
                 <input type=""text
                 onChange={this.update.bind(this)}/>
-                <h1>{this.state.txt} - {this.state.cat}</h1>
             </div>
         )
     }
