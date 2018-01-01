@@ -4,48 +4,26 @@ import ReactDom from 'react-dom';
 class App extends React.Component {
     constructor(){
         super();
-        this.state = {val: 0}
-        this.update = this.update.bind(this)
+        this.state = {increasing: false}
     }
-    update() {
-        this.setState({val: this.state.val + 1 })
-    }
-    componentWillMount(){
-        console.log('ComponentWillMount')
-        this.setState({m: 2})
-    }
-    render(){
-        console.log('render');
-        return <button onClick={this.update}>{this.state.val * this.state.m}</button>
-    }
-
-    componentDidMount(){
-        console.log('ComponentDidMount');
-        this.inc = setInterval(this.update, 500)
-    }
-
-    componentWillUnMount(){
-        console.log('ComponentWillUnmount')
-        clearInterval(this.inc)
-    }
-}
-
-class Wrapper extends React.Component {
-    mount() {
-        ReactDom.render(<App/>, document.getElementById('a'))
-    }
-    unmount() {
-        ReactDom.unmountComponentAtNode(document.getElementById('a'))
+    update(){
+        ReactDom.render{
+            <App val={this.props.val+1}/>, document.getElementById('root'))
+        }
+        componentWillReceiveProps(nextProps){
+            this.setState({increasing: nextProps.val > this.props.val})
+        }
     }
     render(){
-        return (
-            <div>
-                <button onClick={this.mount.bind(this)}>Mount</button>
-                <button onClick={this.unmount.bind(this)}>UnMount</button>
-                <div id="a"></div>
-            </div>
+        console.loh(this.state.increasing)
+        return(
+            <button onClick={this.update.bind(this)}>
+                {this.props.val}
+                </button>
         )
     }
 }
+
+App.defaultProps = {val: 0}
 
 export default Wrapper
